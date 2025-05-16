@@ -135,7 +135,7 @@
                     <activeRecipes>
                         <recipe>org.openrewrite.java.OrderImports</recipe>
                         <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
-                        <recipe>org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_3</recipe>
+                        <recipe>io.moderne.java.spring.boot3.SpringBootProperties_3_4</recipe>
                     </activeRecipes>
                 </configuration>
                 <dependencies>
