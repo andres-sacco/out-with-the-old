@@ -2,6 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <groupId>com.twa</groupId>
     <artifactId>api-reservations</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -9,35 +15,18 @@
     <description>api-reservations</description>
     <properties>
         <java.version>17</java.version>
-        <spring-boot-starter.version>3.1.0</spring-boot-starter.version>
-        <maven.version>3.8.3</maven.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.1.0</springdoc-openapi-starter-webmvc-ui.version>
 
         <junit.version>5.10.1</junit.version>
         <mockito.version>5.4.0</mockito.version>
         <junit-platform-launcher.version>1.8.2</junit-platform-launcher.version>
-        <instancio-junit.version>5.2.1</instancio-junit.version>
-        <datafaker.version>2.3.0</datafaker.version>
 
-        <maven-failsafe-plugin.version>3.5.4</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
         <formatter-maven-plugin.version>2.23.0</formatter-maven-plugin.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-starter.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -118,15 +107,14 @@
         <dependency>
             <groupId>org.instancio</groupId>
             <artifactId>instancio-junit</artifactId>
-            <version>${instancio-junit.version}</version>
+            <version>5.2.1</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>net.datafaker</groupId>
             <artifactId>datafaker</artifactId>
-            <version>${datafaker.version}</version>
-            <scope>test</scope>
+            <version>2.3.0</version>
         </dependency>
 
     </dependencies>
@@ -158,6 +146,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
@@ -165,7 +155,6 @@
                             <version>${mapstruct.version}</version>
                         </path>
                     </annotationProcessorPaths>
-                    <release>${java.version}</release>
                 </configuration>
             </plugin>
 
@@ -186,7 +175,7 @@
                                     <version>${java.version}</version>
                                 </requireJavaVersion>
                                 <requireMavenVersion>
-                                    <version>${maven.version}</version>
+                                    <version>3.8.3</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
@@ -203,13 +192,11 @@
                 </configuration>
             </plugin>
 
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
             </plugin>
-
         </plugins>
     </build>
 
